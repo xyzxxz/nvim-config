@@ -1,0 +1,43 @@
+return {
+    {
+        'nvim-treesitter/nvim-treesitter',
+        version = false,
+        opts = {
+            highlight = {
+                enable = true,
+            },
+            indent = {
+                enable = true,
+            },
+            ensure_installed = {
+                'bash',
+                'css',
+                'git-config',
+                'git-rebase',
+                'gitattributes',
+                'gitcommit',
+                'gitignore',
+                'html',
+                'http',
+                'java',
+                'javascript',
+                'jsdoc',
+                'lua',
+                'luadoc',
+                'luap',
+                'make',
+                'markdown',
+                'markdown_inline',
+                'perl',
+                'php',
+                'regex',
+                'scss',
+                'sql',
+                'toml',
+                'vim',
+                'vimdoc',
+                'vue',
+	    },
+        },
+    }, 
+}
