@@ -1,10 +1,10 @@
-return {
-    'nvim-telescope/telescope.nvim',
-    cmd = 'Telescope',
-    dependencies = {
-        'nvim-lua/plenary.nvim',
+require("telescope").setup {
+  defaults = {
+    mappings = {
+      i = {
+        ["<C-h>"] = "which_key"
+      },
     },
-    keys = {
-        {'<localleader>f', '<cmd>Telescope find_files<CR>', desc = 'Find files' },
-    },
+  },
+
 }

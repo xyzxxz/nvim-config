@@ -1,14 +1,19 @@
-return {
-    {
-        'nvim-lualine/lualine.nvim',
-        dependencies = {
-            'nvim-lua/plenary.nvim',
-            'nvim-tree/nvim-web-devicons',
-        },
-        event = 'VeryLazy',
-        opts = {
-            icons_enabled = true,
-            theme = 'auto',
-        },
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'auto',
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {},
     },
+    ignore_focus = {},
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'},
+  },
 }

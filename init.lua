@@ -1,8 +1,10 @@
 vim.loader.enable()
 
+
 local version = vim.version
 
-require("globals")
-require("utils")
-require("plugins")
-require("mappings")
+require("core.options")
+require("core.utils")
+require("core.plugins")
+require("core.mappings")
+
