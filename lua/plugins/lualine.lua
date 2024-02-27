@@ -1,9 +1,15 @@
+vim.o.laststatus = vim.g.lualine_laststatus
+
 require('lualine').setup {
   options = {
     icons_enabled = true,
     theme = 'auto',
     disabled_filetypes = {
-      statusline = {},
+      statusline = {
+        "dashboard",
+        "alpha",
+        "starter"
+      },
       winbar = {},
     },
     ignore_focus = {},

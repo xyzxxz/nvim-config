@@ -12,6 +12,15 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+  -- ColorScheme
+  {
+    'catppuccin/nvim',
+    name = "catppuccin",
+    priority = 1000,
+    config = function ()
+      require('plugins.colorschemes')
+    end,
+  },
   -- Icons
   {
     'nvim-tree/nvim-web-devicons',
@@ -29,14 +38,28 @@ require("lazy").setup({
   },
   -- file explorer
   {
-    'nvim-tree/nvim-tree.lua',
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    cmd = "Neotree",
     dependencies = {
-      'nvim-tree/nvim-web-devicons',
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
-    config = function() 
-      require('plugins.nvim-tree')
-    end
+    config = function ()
+      require("plugins.neotree")
+    end,
   },
+  -- {
+    -- 'nvim-tree/nvim-tree.lua',
+    -- dependencies = {
+      -- 'nvim-tree/nvim-web-devicons',
+    -- },
+    -- config = function() 
+      -- require('plugins.nvim-tree')
+    -- end
+  -- },
   -- autocompletion
   {
     'hrsh7th/nvim-cmp',
@@ -87,11 +110,66 @@ require("lazy").setup({
   {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
-
+    config = true,
+  },
+  -- Comments
+  {
+    'numToStr/Comment.nvim',
+    lazy = false,
+    config = function ()
+      require('plugins.comment')
+    end
+  },
+  -- Indent blankline
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = 'ibl',
+    config = function ()
+      require("ibl").setup({
+        indent = {
+          char = "│",
+          tab_char = "│",
+        },
+        scope = { enabled = false },
+        exclude = {
+          filetypes = {
+            "help",
+            "alpha",
+            "dashboard",
+            "Trouble",
+            "trouble",
+            "lazy",
+            "mason",
+          },
+        },
+      })
+    end
   },
   -- LSP configuration
   {
-    
+    'neovim/nvim-lspconfig',
+    dependencies = {
+      {
+        'folke/neoconf.nvim',
+        config = false,
+        dependencies = { 'nvim-lspconfig' },
+      },
+      {
+        'folke/neodev.nvim',
+      },
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+    },
+    config = function ()
+      require('plugins.lsp')
+    end
+  },
+  {
+    'williamboman/mason.nvim',
+    cmd = 'Mason',
+    config = function()
+      require('plugins.mason')
+    end
   },
     ui = {
         size = { width = 0.8, height = 0.8 },
